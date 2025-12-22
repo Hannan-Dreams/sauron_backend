@@ -1,0 +1,24 @@
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient } = require('@aws-sdk/lib-dynamodb');
+
+/**
+ * DynamoDB Client Configuration
+ */
+const client = new DynamoDBClient({
+    region: process.env.AWS_REGION || 'us-east-1',
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+});
+
+// Create DynamoDB Document Client for easier operations
+const dynamoDB = DynamoDBDocumentClient.from(client);
+
+// Table name from environment
+const USERS_TABLE = process.env.USERS_TABLE_NAME || 'Users';
+
+module.exports = {
+    dynamoDB,
+    USERS_TABLE,
+};
