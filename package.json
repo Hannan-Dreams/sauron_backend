@@ -1,5 +1,5 @@
 {
-    "name": "s1-backend",
+    "name": "sauron_backend",
     "version": "1.0.0",
     "description": "Backend API for S1 application with JWT authentication and DynamoDB",
     "main": "server.js",
