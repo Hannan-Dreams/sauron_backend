@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const techProductsController = require('../controllers/techProductsController');
 const authenticateToken = require('../middleware/auth');
-const { upload } = require('../config/upload');
+const { upload } = require('../config/s3');
 
 /**
  * Tech Products Routes

@@ -21,8 +21,8 @@ exports.createProduct = async (req, res) => {
             });
         }
 
-        // Get image URL from uploaded file
-        const imageUrl = req.file ? `/uploads/tech-products/${req.file.filename}` : null;
+        // Get image URL from uploaded file (S3 location)
+        const imageUrl = req.file ? req.file.location : null;
 
         const productData = {
             name,
@@ -145,9 +145,9 @@ exports.updateProduct = async (req, res) => {
             updateData.specs = JSON.parse(updateData.specs);
         }
 
-        // Update image URL if new file uploaded
+        // Update image URL if new file uploaded (S3 location)
         if (req.file) {
-            updateData.imageUrl = `/uploads/tech-products/${req.file.filename}`;
+            updateData.imageUrl = req.file.location;
         }
 
         const updatedProduct = await techProductsService.updateProduct(productId, updateData);
